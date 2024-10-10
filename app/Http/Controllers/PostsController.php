@@ -69,10 +69,10 @@ class PostsController extends Controller
      * @param  string  $slug
      * @return \Illuminate\Http\Response
      */
-    public function show($slug)
+    public function show(slug $slug)
     {
         $post = null;
-        if (is_numeric($slug) && (int)$slug == $slug) {
+        if (is_numeric($slug) && (int) $slug == $slug) {
             $post = Post::find($slug);
         } else {
             $post = Post::where('slug', $slug)->first();
