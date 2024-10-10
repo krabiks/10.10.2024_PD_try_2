@@ -19,6 +19,7 @@ use App\Http\Controllers\CommentsController;
 
 Route::get('/', [PagesController::class, 'index']);
 
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -29,13 +30,15 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
 Route::get('/blog', [PostsController::class, 'index'])->name('blog.index');
 Route::get('/blog/create', [PostsController::class, 'create'])->name('blog.create');
 Route::post('/blog', [PostsController::class, 'store'])->name('blog.store');
+Route::post('/blog/{blog}', [PostsController::class, 'show'])->name('post.show');
 Route::get('/blog/{blog}/edit', [PostsController::class, 'edit'])->name('blog.edit');
 Route::put('/blog/{blog}', [PostsController::class, 'update'])->name('blog.update');
+Route::delete('/blog/{blog}', [PostsController::class, 'destroy'])->name('blog.destroy');
 
 
 Route::post('/blog/{slug}/comments/create', [CommentsController::class, 'store']);

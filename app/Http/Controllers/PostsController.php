@@ -69,7 +69,7 @@ class PostsController extends Controller
      * @param  string  $slug
      * @return \Illuminate\Http\Response
      */
-    public function show(slug $slug)
+    public function show($slug)
     {
         $post = null;
         if (is_numeric($slug) && (int) $slug == $slug) {
